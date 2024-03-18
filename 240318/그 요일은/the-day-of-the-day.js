@@ -12,4 +12,5 @@ let date2 = new Date(`${year}-${m2}-${d2}`);
 const diff = Math.ceil((date2.getTime() - date1.getTime()) / (1000 * 3600 * 24));
 const daydiff = week.indexOf(A);
 
-console.log(~~((diff - daydiff) / 7) + 1)
+const answer = diff > 0 ? ~~((diff - daydiff) / 7) + 1 : 0;
+console.log(answer)
