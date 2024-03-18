@@ -7,7 +7,7 @@ const arr = Array.from({length:201}, x=>Array(201).fill(0));
 
 for(let i = 1; i <= n; i++){
     const [a,b] = input[i].split(' ').map(Number);
-    let [x1, y1, x2, y2] = [a, b, a+8, b+8];
+    let [x1, y1, x2, y2] = [a+100, b+100, a+108, b+108];
     x1 < x2 ? null : [x1, x2] = [x2, x1];
     y1 < y2 ? null : [y1, y2] = [y2, y1];
     
