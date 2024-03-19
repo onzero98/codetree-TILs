@@ -1,37 +1,30 @@
 const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const arr = Array.from({length:2001}, x=>Array(2001).fill(0));
+const rect1 = input[0].split(' ').map(Number);
+const rect2 = input[1].split(' ').map(Number);
 
-let minx = 2000;
-let miny = 2000;
-let maxx = 0;
-let maxy = 0;
+function calc(rect1, rect2) {
+    let [x1, y1, x2, y2] = rect1;
+    let [x3, y3, x4, y4] = rect2;
+    let minRect = (x2 - x1) * (y2 - y1);
 
-for(let i = 0; i < 2; i++){
-    const [a,b,c,d] = input[i].split(' ').map(Number);
-    let [x1, y1, x2, y2] = [a+1000, b+1000, c+1000, d+1000];
+    if(y3 <= y1 && y2 <= y4){
+        if(x3 <= x2 && x2 <= x4){
+            minRect = (x3 - x1) * (y2 - y1);
+        }
 
-    minx = Math.min(minx, x1);
-    miny = Math.min(miny, y1);
-    maxx = Math.max(maxx, x2);
-    maxy = Math.max(maxy, y2);
-
-    for(let x = x1; x < x2; x++){
-        for(let y = y1; y < y2; y++){
-            arr[x][y] = i+1;
+        if(x4 <= x2 && x3 <= x1){
+            minRect = (x2 - x4) * (y2 - y1);
+        }
+        
+        if(x3 <= x1 && x2 <= x4){
+            minRect = 0;
         }
     }
+
+    return minRect;
 }
 
-let area = [];
-for(let x = minx; x < maxx; x++){
-    for(let y = miny; y < maxy; y++){
-        if(arr[x][y] == 1){
-            area[maxx-x] ? area[maxx-x] += 1 : area[maxx-x] = 1;
-        }
-    }
-}
-
-const answer = area.filter(x=>x).length !== 0 ? Math.max(...area.filter(x=>x)) * area.filter(x=>x).length: 0;
+const answer = calc(rect1, rect2);
 console.log(answer);
