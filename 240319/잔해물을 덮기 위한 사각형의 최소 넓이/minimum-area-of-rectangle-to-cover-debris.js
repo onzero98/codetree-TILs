@@ -23,6 +23,20 @@ function calc(rect1, rect2) {
         }
     }
 
+    if(x3 <= x1 && x2 <= x4){
+        if(y3 <= y2 && y2 <= y4){
+            minRect = (y3 - y1) * (x2 - x1);
+        }
+
+        if(y4 <= y2 && y3 <= y1){
+            minRect = (y2 - y4) * (x2 - x1);
+        }
+        
+        if(y3 <= y1 && y2 <= y4){
+            minRect = 0;
+        }
+    }
+
     return minRect;
 }
 
