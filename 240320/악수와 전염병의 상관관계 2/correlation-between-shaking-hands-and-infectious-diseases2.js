@@ -11,7 +11,7 @@ result[p] = 1;
 let limit = Array(n+1).fill(k);
 
 for(let [t, x, y] of sortArr){
-    if(limit[x] > 0){
+    if(limit[x] > 0 && result[x] === 1){
         result[y] = 1;
         limit[x] -= 1;
     }
