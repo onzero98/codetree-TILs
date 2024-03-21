@@ -4,7 +4,7 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 const [n, t] = input[0].split(' ').map(Number);
 const [r, c, d] = input[1].split(' ');
 
-const dx = [1, -1, 0, 0];
+const dx = [-1, 1, 0, 0];
 const dy = [0, 0, 1, -1];
 
 function check(dir){
