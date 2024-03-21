@@ -2,21 +2,20 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
-const arr = input.slice(1).map((x)=>x.split(' '));
-let map = Array(2001).fill(0);
+let x = 0; y = 0;
 
-const dx = [1, 0, 0, -1];
-const dy = [0, 1, -1, 0];
-const dir = ['W', 'S', 'N', 'E'];
-let sp = [1000, 1000];
+const dx = [1, -1, 0, 0];
+const dy = [0, 0, -1, 1];
+const dir = ['E', 'W', 'S', 'N'];
 
-for(let [d, m] of arr){
-    const way = dir.indexOf(d);
-    sp[0] = sp[0] + m * dx[way];
-    sp[1] = sp[1] + m * dy[way];
+for(let i = 1; i <= n; i++){
+    const [d, m] = input[i].split(' ');
+    const move = parseInt(m);
+
+    let md = dir.indexOf(d);
+
+    x += dx[md] * move;
+    y += dy[md] * move;
 }
-
-let x = (sp[0]-1000) !== 0 ? -(sp[0]-1000) : 0;
-let y = (sp[1]-1000) !== 0 ? -(sp[1]-1000) : 0;
 
 console.log(x, y)
