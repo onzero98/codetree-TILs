@@ -9,9 +9,10 @@ const dy = [1, 0, -1, 0];
 let dir = 0;
 
 let x = 0, y = 0;
+let index = 65
 arr[x][y] = 'A';
 
-for(let i = 2; i <= n * m; i++){
+for(let i = 1; i < n * m; i++){
     let nx = x + dx[dir];
     let ny = y + dy[dir];
 
@@ -23,7 +24,9 @@ for(let i = 2; i <= n * m; i++){
 
     x = nx;
     y = ny;
-    arr[x][y] = String.fromCharCode(i+64);
+
+    index >= 90 ? index = 65 : index++;
+    arr[x][y] = String.fromCharCode(index);
 }
 
 for (let i = 0; i < n; i++) {
