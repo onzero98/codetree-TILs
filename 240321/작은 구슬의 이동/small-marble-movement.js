@@ -39,7 +39,7 @@ function solution(n, t, r, c, d){
                 case 'U':
                     way = 'D';
                     break;
-                case 'D':
+                case 'R':
                     way = 'L';
                     break;
                 case 'D':
