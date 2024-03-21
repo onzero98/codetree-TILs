@@ -16,4 +16,7 @@ for(let [d, m] of arr){
     sp[1] = sp[1] + m * dy[way];
 }
 
-console.log(-(sp[0]-1000), -(sp[1]-1000))
+let x = (sp[0]-1000) !== 0 ? -(sp[0]-1000) : 0;
+let y = (sp[1]-1000) !== 0 ? -(sp[1]-1000) : 0;
+
+console.log(x, y)
