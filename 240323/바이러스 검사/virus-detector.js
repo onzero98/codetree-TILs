@@ -2,7 +2,7 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
-const c = input[1].split(' ').map(Number);
+const c = input[1].trim().split(' ').map(Number);
 const [leader, member] = input[2].split(' ').map(Number);
 
 let num_leader = 0;
