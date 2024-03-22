@@ -20,5 +20,12 @@ function getComb(arr, n){
 }
 
 const makes = getComb(arr, n-2);
-const answer = makes.map(x=> Math.abs(x.reduce((a,c)=>a+c,0) - s));
-console.log(Math.min(...answer));
+let answer = Number.MAX_SAFE_INTEGER;
+
+for(let nums of makes){
+    let sum = nums.reduce((a,c)=>a+c,0);
+    const result = Math.abs(s - sum);
+    answer = Math.min(answer, result);
+}
+
+console.log(answer);
