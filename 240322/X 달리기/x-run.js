@@ -1,33 +1,26 @@
 const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const n = parseInt(input[0]);
+const X = parseInt(input[0]);
 
-const use = [0, 1, -1];
-const run = [];
+let minTime = Infinity;
 
-function make(cur, arr){
-    let sum = arr.reduce((a,c)=>a+c,0);
+function dfs(distance, speed, time) {
+  if (distance === X && speed === 1) {
+    minTime = Math.min(minTime, time);
+    return;
+  }
+  if (distance > X || time >= minTime) {
+    return;
+  }
 
-    if(cur < 1 || sum > n){
-        return
-    }
+  dfs(distance + speed + 1, speed + 1, time + 1);
+  dfs(distance + speed, speed, time + 1);
 
-    if(sum === n && arr[arr.length-1] === 1){
-        run.push(arr);
-    }
-
-    for(let speed of use){
-        const newArr = arr.slice();
-        newArr.push(cur+speed);
-        make(cur+speed, newArr)
-    }
+  if (speed > 1) {
+    dfs(distance + speed - 1, speed - 1, time + 1);
+  }
 }
 
-if(n < 4){
-    console.log(n);
-} else {
-    make(1, [1]);
-    const answer = run.map(x=>x.length);
-    console.log(Math.min(...answer));
-}
+dfs(1, 1, 1);
+console.log(minTime);
