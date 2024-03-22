@@ -13,7 +13,7 @@ for(let customer of c){
     num_leader++;
 
     while(true){
-        if(customer < 0){
+        if(customer <= 0){
             break;
         }
 
