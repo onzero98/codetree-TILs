@@ -2,38 +2,38 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const [n, b] = input[0].split(' ').map(Number);
-const arr = input.slice(1).map(x=>x.split(' ').map(Number));
+const list = input.slice(1).map(x=>x.split(' ').map(Number));
 
-const list = arr.sort((a,b)=>(b[0] + b[1]) - (a[0] + a[1]));
+function solution(n, b, list){
+    let count = 0;
 
-function solution(list){
     for(let i = 0; i < n; i++){
-        let use = list.slice(i);
-        let sum = 0;
-        let p = 0;
-        
-        for(let j = 0; j < use.length; j++){
-            if(sum <= b){
-                if(j===0){
-                    sum += use[0][0] / 2;
-                    sum += use[0][1];
-                    p++;
-                } else {
-                    sum += use[j][0] / 2;
-                    sum += use[j][1];
-                    p++;
-                }
+        let budget = b - (list[i][0] / 2 + list[i][1]);
+        let students = 1;
+        let prices = [];
+
+        for (let j = 0; j < n; j++) {
+            if (i !== j) { // 쿠폰 사용 학생 제외
+                prices.push(list[j][0] + list[j][1]);
+            }
+        }
+
+        prices.sort((a, b) => a - b);
+
+        for (let price of prices) {
+            if (budget >= price) {
+                budget -= price;
+                students++;
             } else {
-                p = 0;
                 break;
             }
         }
 
-        if(p !== 0){
-            return p;
-        }
+        count = Math.max(count, students);
     }
+
+    return count
 }
 
-const answer = solution(list);
+const answer = solution(n, b, list);
 console.log(answer);
