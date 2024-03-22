@@ -6,14 +6,14 @@ const arr = input.slice(1).map(x=>x.split(' ').map(Number));
 
 let answer = 0;
 for(let i = 0; i < n; i++){
-    let sum = 0;
-    for(let j = 0; j <= n-3; j++){
+    for(let j = i; j <= n-3; j++){
+        let sum = 0;
         sum += arr[i][j];
         sum += arr[i][j+1];
         sum += arr[i][j+2];
+        
+        answer = Math.max(answer, sum);
     }
-    
-    answer = Math.max(answer, sum);
 }
 
 console.log(answer)
