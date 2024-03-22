@@ -4,21 +4,11 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 const n = parseInt(input[0]);
 const arr = input[1].split(' ').map(Number);
 
-function getComb(arr, n){
-    if(n===1)
-        return arr.map(x=>[x]);
-    
-    let res = [];
-    arr.forEach((fix, idx, ori)=>{
-        const rest = ori.slice(idx+1);
-        const comb = getComb(rest, n-1);
-        const atta = comb.map(x=>[fix, ...x]);
-        res.push(...atta);
-    });
+arr.sort((a, b) => b - a);
 
-    return res;
-}
+const maxProduct = Math.max(
+    arr[0] * arr[1] * arr[2],
+    arr[0] * arr[n - 1] * arr[n - 2] 
+);
 
-const list = getComb(arr, 3);
-const answer = list.map(x=>x.reduce((a,c)=>a*c,1))
-console.log(Math.max(...answer));
+console.log(maxProduct);
