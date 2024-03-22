@@ -16,7 +16,9 @@ function solution(a){
             a[i] = '1';
             break;
         }
-        flag = true;
+
+        if(i === a.length - 1)
+            flag = true;
     }
 
     if(flag){
@@ -27,7 +29,7 @@ function solution(a){
             }
         }
     }
-
+    
     return parseInt(a.join(''), 2)
 }
 
