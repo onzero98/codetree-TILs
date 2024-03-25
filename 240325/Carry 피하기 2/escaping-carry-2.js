@@ -3,7 +3,7 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
 const nums = input.slice(1).map(Number)
-let max = 0;
+let max = -1;
 
 function select(a, b, c){
     let arr = [a, b, c];
@@ -15,7 +15,7 @@ function select(a, b, c){
         for(let j = 0; j < 3; j++){
             sum += arr[j][i] || 0;
         }
-        
+
         if(sum >= 10){
             return false
         }
