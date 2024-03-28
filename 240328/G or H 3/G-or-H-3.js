@@ -10,7 +10,7 @@ let max = 0;
 
 for(let i = 0; i < n; i++){
     let start = arr[i][0];
-    let end = arr[i][0] + n;
+    let end = arr[i][0] + k;
     let count = 0;
 
     for(let j = start; j <= end; j++){
