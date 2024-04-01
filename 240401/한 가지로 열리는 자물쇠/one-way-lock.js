@@ -2,19 +2,18 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
-const arr = input[1].split(' ').map(Number);
-const res = arr.map(x=>x+3);
+const [a, b, c] = input[1].split(' ').map(Number);
 
-let answer = Math.pow(n,3);
-if(res.every((v) => v <= n)){
-    const [a, b, c] = res;
-    for(let i = a; i <= n; i++){
-        for(let j = b; j <= n; j++){
-            for(let k = c; k <= n; k++){
-                answer--;
+let answer = 0;
+for(let i = 1; i <= n; i++){
+    for(let j = 1; j <= n; j++){
+        for(let k = 1; k <= n; k++){
+            if(Math.abs(a-i) <= 2 || Math.abs(b-j) <= 2 || Math.abs(c-k) <= 2){
+                answer++;
             }
         }
     }
 }
+
 
 console.log(answer);
