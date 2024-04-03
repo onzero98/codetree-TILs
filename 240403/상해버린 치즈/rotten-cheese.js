@@ -33,15 +33,15 @@ for(let i = 1; i <= m; i++){ // 치즈만큼 반복
         }
     }
 
-    const ep = eatCheeze.map(x=>x[0]);
-    const sp = res.map(x=>x[0]);
-
-    if(flag && ep.includes(...sp)){
+    if(flag){
         let count = new Set();
         for(let [p, t] of eatCheeze){
             count.add(p);
         }
-        answer = Math.max(answer, count.size);
+        let tmp = res.map(x=>x[0]);
+        if(count.has(...tmp)){
+            answer = Math.max(answer, count.size);
+        }
     }
 }
 
