@@ -39,7 +39,7 @@ for(let i = 1; i <= m; i++){ // 치즈만큼 반복
             count.add(p);
         }
         let tmp = res.map(x=>x[0]);
-        if(count.has(...tmp)){
+        if([...count].filter(x=>tmp.includes(x)).length === tmp.length){
             answer = Math.max(answer, count.size);
         }
     }
