@@ -34,7 +34,11 @@ for(let i = 1; i <= m; i++){ // 치즈만큼 반복
     }
 
     if(flag){
-        answer = Math.max(answer, eatCheeze.length);
+        let count = new Set();
+        for(let [p, t] of eatCheeze){
+            count.add(p);
+        }
+        answer = Math.max(answer, count.size);
     }
 }
 
