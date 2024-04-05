@@ -12,7 +12,7 @@ arr.forEach((v)=>{
 let answer = 0;
 for(let i = a; i <= b; i++){
     const si = map.indexOf('S');
-    const ni = map.indexOf('N');
+    const ni = map.indexOf('N') === -1 ? Number.MAX_SAFE_INTEGER : map.indexOf('N');
 
     if(i !== a && i === si){
         map[ni] = false;
