@@ -3,28 +3,63 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
 const arr = input.slice(1).map(lines => lines.split(' ').map(Number));
-const xarr = Array(11).fill(0);
-const yarr = Array(11).fill(0);
+const max = 10;
+let answer = 0;
 
-for(let i = 0; i < n; i++){
-    const [x, y] = arr[i];
-    xarr[x] += 1;
-    yarr[y] += 1;
-}
+for (let i = 0; i <= max; i++) {
+    for (let j = 0; j <= max; j++) {
+        for (let k = 0; k <= max; k++) {
+            let success = true;
 
-function canCover(arr) {
+            arr.forEach(([x, y]) => {
+                if (x === i || x === j || x === k) {
+                    return;
+                }
+                
+                success = false;
+            });
+            if (success) {
+                answer = 1;
+            }
 
-    let linesNeeded = 0;
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] > 0) {
-            linesNeeded++;
+            success = true;
+            arr.forEach(([x, y]) => {
+                if (x === i || x === j || y === k) {
+                    return;
+                }
+                
+                success = false;
+            });
+            if (success) {
+                answer = 1;
+            }
+                
+            success = true;
+            arr.forEach(([x, y]) => {
+                if (x === i || y === j || y === k) {
+                    return;
+                }
+                
+                success = false;
+            });
+            if (success) {
+                answer = 1;
+            }
+
+            success = true;
+            arr.forEach(([x, y]) => {
+                if (y === i || y === j || y === k) {
+                    return;
+                }
+                
+                success = false;
+            });
+
+            if (success) {
+                answer = 1;
+            }
         }
     }
-    return linesNeeded <= 3;
 }
 
-if (canCover(xarr) || canCover(yarr)) {
-    console.log(1);
-} else {
-    console.log(0);
-}
+console.log(answer);
