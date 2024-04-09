@@ -14,7 +14,7 @@ for(let i = 0; i < n; i++){
 
 if(xarr.filter(x=>x!==0).length <= 3 || xarr.filter(y=>y!==0).length <= 3){
     console.log(1)
-} else if(xarr.filter(x=>x>1).length + yarr.filter(y=>y>1).length === 3){
+} else if(xarr.filter(x=>x===Math.max(...xarr)).length + yarr.filter(y=>y===Math.max(...yarr)).length === 3){
     console.log(1)
 } else {
     console.log(0)
