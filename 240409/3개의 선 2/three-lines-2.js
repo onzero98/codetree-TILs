@@ -12,10 +12,19 @@ for(let i = 0; i < n; i++){
     yarr[y] += 1;
 }
 
-if(xarr.filter(x=>x!==0).length <= 3 || xarr.filter(y=>y!==0).length <= 3){
-    console.log(1)
-} else if(xarr.filter(x=>x===Math.max(...xarr)).length + yarr.filter(y=>y===Math.max(...yarr)).length === 3){
-    console.log(1)
+function canCover(arr) {
+
+    let linesNeeded = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0) {
+            linesNeeded++;
+        }
+    }
+    return linesNeeded <= 3;
+}
+
+if (canCover(xarr) || canCover(yarr)) {
+    console.log(1);
 } else {
-    console.log(0)
+    console.log(0);
 }
