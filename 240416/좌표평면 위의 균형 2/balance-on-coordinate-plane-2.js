@@ -13,8 +13,8 @@ arr.forEach(([x, y])=>{
 
 let m = Number.MAX_SAFE_INTEGER;
 
-for(let i = 2; i < maxX; i += 2){
-    for(let j = 2; j < maxY; j += 2){
+for(let i = 2; i <= 100; i += 2){
+    for(let j = 2; j <= 100; j += 2){
         let plot = [0, 0, 0, 0];
 
         for(let [x, y] of arr){
@@ -28,7 +28,6 @@ for(let i = 2; i < maxX; i += 2){
                 plot[3] += 1;
             }
         }
-
         m = Math.min(m, Math.max(...plot));
     }
 }
