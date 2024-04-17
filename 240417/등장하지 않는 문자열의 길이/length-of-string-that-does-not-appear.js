@@ -1,23 +1,30 @@
 const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
-const n = parseInt(input[0]);
+let n = parseInt(input[0]);
 const word = input[1]
 
-let max = [];
-for(let i = 0; i < n; i++){
+function solution(n, word) {
+    for(let len = 1; len <= n; len++){ 
+        let seen = new Set();
+        let isUnique = true;
 
-    for(let j = i; i < n; j++){
-        const w = word.slice(i, j+1);
-        const remain = word.slice(j+1);
+        for(let i = 0; i <= n - len; i++){
+            const substr = word.substring(i, i + len); 
+            if (seen.has(substr)) {
+                isUnique = false;
+                break;
+            }
+            seen.add(substr);
+        }
 
-        if(remain.indexOf(w) < 0){
-            max.push(w.length);
-            break;
+        if(isUnique){
+            return len;
         }
     }
 
+    return n;
 }
 
-const answer = Math.max(...max)
-console.log(answer)
+const answer = solution(n, word);
+console.log(answer);
