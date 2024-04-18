@@ -4,9 +4,7 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 const n = parseInt(input[0]);
 const space = input.slice(1).map(lines => lines.split(' ').map(Number));
 
-let [min, max] = space[0];
-
-for(let i = min; i <= max; i++){
+for(let i = 1; i <= 10000; i++){
     let curNum = i;
     let flag = true;
 
