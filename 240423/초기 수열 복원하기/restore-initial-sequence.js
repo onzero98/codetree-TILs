@@ -36,5 +36,5 @@ function solution(cur, A){
 
 solution([], A);
 sample = sample.sort((a,b)=>a-b);
-const answer = sample[0];
+let answer = sample[0].toString().split('').join(' ');
 console.log(answer)
