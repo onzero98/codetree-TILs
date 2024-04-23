@@ -3,38 +3,30 @@ const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const n = parseInt(input[0]);
 const arr = input[1].split(' ').map(Number);
-let A = Array(n).fill(0).map((x,i)=>x=i+1);
-let sample = [];
+const a = new Array(n).fill(0);
 
-function solution(cur, A){
-    if(cur.length === n){
-        sample.push(parseInt(cur.join('')));
+for(let i = 1; i <= n; i++){
+    a[0] = i;
+
+    for(let j = 1; j < n; j++){
+        a[j] = arr[j-1] - a[j-1];
     }
-    // console.log(cur, arr)
-    for(let i = 0; i < A.length; i++){
-        let num = A[i];
-        let tmp = cur.slice();
-        tmp.push(num);
-        let arr2 = A.slice();
-        delete arr2[i];
-        arr2 = arr2.filter(x=>x);
 
-        let flag = true;
-        if(tmp.length > 1){
-            for(let j = 0; j < tmp.length - 1; j++){
-                if(tmp[j] + tmp[j+1] !== arr[j]){
-                    flag = false;
-                }
-            }
+    let flag = true;
+    const exist = new Array(1001).fill(false);
+    for(let k = 0; k < n; k++){
+        if(a[k] <= 0 || a[k] > n){
+            flag = false;
+        } else {
+            if(exist[a[k]]){
+                flag = false;
+            } 
+            exist[a[k]] = true;
         }
+    }
 
-        if(flag){
-            solution(tmp, arr2);
-        }
+    if(flag){
+        console.log(a.join(' '));
+        return
     }
 }
-
-solution([], A);
-sample = sample.sort((a,b)=>a-b);
-let answer = sample[0].toString().split('').join(' ');
-console.log(answer)
