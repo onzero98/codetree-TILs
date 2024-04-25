@@ -14,8 +14,7 @@ for(let i = 0; i <= n - l; i++){
         tmp[j] += 1;
     }
 
-    const nums = new Set(tmp);
-    for(let num of nums){
+    for(let num = 0; num <= 100; num++){
         const filter = tmp.filter(x=>x>=num).length;
         if(num <= filter){
             answer = Math.max(answer, num);
