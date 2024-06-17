@@ -1,7 +1,7 @@
 const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim();
 
-const [a, b, x, y] = input[0].split(' ').map(Number);
+const [a, b, x, y] = input.split(' ').map(Number);
 
 let min = Number.MAX_SAFE_INTEGER;
 
