@@ -2,23 +2,38 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const N = parseInt(input[0]);
-const arr = input.slice(1).map(x=>x.split(' ').map(Number));
+const arr = input.slice(1).map(x => x.split(' ').map(Number));
 
-let answer = 0;
-for(let i = 1; i <= 3; i++){
-    const R = i;
-    const S = i + 1 > 3 ? (i + 1) % 3 : i + 1;
-    const P = i + 2 > 3 ? (i + 2) % 3 : i + 2;
+const mappings = [
+    {1: '가위', 2: '바위', 3: '보'},
+    {1: '가위', 2: '보', 3: '바위'},
+    {1: '바위', 2: '가위', 3: '보'},
+    {1: '바위', 2: '보', 3: '가위'},
+    {1: '보', 2: '가위', 3: '바위'},
+    {1: '보', 2: '바위', 3: '가위'}
+];
 
-    let wins = 0;
-    for(let [dev1, dev2] of arr){
+const winConditions = {
+    '가위': '보',
+    '바위': '가위',
+    '보': '바위'
+};
 
-        if((dev1 === R && dev2 === S) || (dev1 === S && dev2 === P) || (dev1 === P && dev2 === R)){
-            wins++;
+let maxWins = 0;
+
+for (const mapping of mappings) {
+    let currentWins = 0;
+
+    for (const [dev1, dev2] of arr) {
+        const dev1Choice = mapping[dev1];
+        const dev2Choice = mapping[dev2];
+
+        if (winConditions[dev1Choice] === dev2Choice) {
+            currentWins++;
         }
     }
 
-    answer = Math.max(answer, wins);
+    maxWins = Math.max(maxWins, currentWins)
 }
 
-console.log(answer);
+console.log(maxWins);
