@@ -11,7 +11,7 @@ for(let i = 1; i < input.length; i++){
     }
 
     if((dev1 === 1 && dev2 === 3) || (dev1 === 3 && dev2 === 1)){
-        dev1 < dev2 ? CASE[1] += 1 : CASE[1] -= 1;
+        dev1 < dev2 ? CASE[1] -= 1 : CASE[1] += 1;
     }
     
     if((dev1 === 2 && dev2 === 3) || (dev1 === 3 && dev2 === 2)){
@@ -20,5 +20,4 @@ for(let i = 1; i < input.length; i++){
 }
 
 CASE.sort().reverse();
-
 console.log(CASE[0]+CASE[1]);
