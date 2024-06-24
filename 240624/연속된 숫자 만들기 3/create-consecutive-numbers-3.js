@@ -2,7 +2,7 @@ const fs = require('fs');
 const input = fs.readFileSync('/dev/stdin').toString().trim().split('\n');
 
 const arr = input[0].split(' ').map(Number);
-const result = 0;
+let result = 0;
 
 function solution(array) {
     let [st, nd, rd] = array;
